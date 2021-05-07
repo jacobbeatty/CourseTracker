@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.ViewHolder> {
-    ArrayList<String> terms;
+    ArrayList<Term> terms;
 
-    public TermAdapter(ArrayList<String> terms) {
+    public TermAdapter(ArrayList<Term> terms) {
         this.terms = terms;
     }
 
@@ -25,7 +25,10 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(TermAdapter.ViewHolder holder, int position) {
-        holder.termName.setText(terms.get(position));
+        holder.termName.setText(terms.get(position).getTermName());
+        holder.termStart.setText(terms.get(position).getTermStart());
+        holder.termEnd.setText(terms.get(position).getTermEnd());
+
     }
 
     @Override
@@ -35,9 +38,14 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView termName;
+        public TextView termStart;
+        public TextView termEnd;
         public ViewHolder(View itemView) {
             super(itemView);
             termName = itemView.findViewById(R.id.term_name);
+            termStart = itemView.findViewById(R.id.term_start);
+            termEnd = itemView.findViewById(R.id.term_end);
+
         }
     }
 }

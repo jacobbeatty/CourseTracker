@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     FloatingActionButton fab;
-    ArrayList<String> terms;
+    ArrayList<Term> terms;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         terms = new ArrayList<>();
 
         for (int i = 0; i < 10 ; i++) {
-            terms.add("Term " + i);
+            Term term = new Term("Term " + i,"04-01-2021","10-01-2021");
+            terms.add(term);
             Log.d(TAG, "i is incremented to " + i);
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

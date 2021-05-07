@@ -31,6 +31,8 @@ public class CreateTerm extends AppCompatActivity {
         termStart = findViewById(R.id.term_start);
         termEnd = findViewById(R.id.term_end);
         button = findViewById(R.id.button);
+        int startMonth = termStart.getMonth();
+        int startYear = termStart.getYear();
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -38,8 +40,7 @@ public class CreateTerm extends AppCompatActivity {
             public void onClick(View view) {
                 // TODO: 5/7/2021 Save to database
 
-                int startMonth = termStart.getMonth();
-                int startYear = termStart.getYear();
+
 
                 Log.d(TAG, "onClick: termName: " + termName.getText().toString());
                 Log.d(TAG, "onClick: startMonth: " + startMonth);

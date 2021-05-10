@@ -1,5 +1,6 @@
 package com.jacobbeatty.coursetracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import java.util.Date;
 
@@ -17,35 +19,36 @@ public class CreateTerm extends AppCompatActivity {
     private static final String TAG = "CreateTerm";
 
     EditText termName;
-    DatePicker termStart;
-    DatePicker termEnd;
+    EditText termStart;
+    EditText termEnd;
     Button button;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_user);
+        setContentView(R.layout.create_term);
 
         termName = findViewById(R.id.term_name);
         termStart = findViewById(R.id.term_start);
         termEnd = findViewById(R.id.term_end);
         button = findViewById(R.id.button);
-        int startMonth = termStart.getMonth();
-        int startYear = termStart.getYear();
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 5/7/2021 Save to database
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
+                        .allowMainThreadQueries()
+                        .build();
+
+//                db.termDao().nukeTable();
+                Term term = new Term(termName.getText().toString(),termStart.getText().toString(),termEnd.getText().toString());
+                db.termDao().instertAll(term);
 
 
-
-                Log.d(TAG, "onClick: termName: " + termName.getText().toString());
-                Log.d(TAG, "onClick: startMonth: " + startMonth);
-                Log.d(TAG, "onClick: startYear: " + startYear);
-
+                startActivity(new Intent(CreateTerm.this, MainActivity.class));
             }
         });
     }

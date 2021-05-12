@@ -16,12 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.ViewHolder> {
+//    private final Context context;
     List<Term> terms;
 //    private final Context context;
 
 
-    public TermAdapter(List<Term> terms) {
+    public TermAdapter( List<Term> terms) {
         this.terms = terms;
 //        this.context = context;
     }
@@ -66,6 +69,14 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.ViewHolder> {
                     Log.d("detail","onClick:Clicked detail for " + position + " term " + term.getTermName());
                     int position = getAdapterPosition();
                     final Term current = terms.get(position);
+                    Intent intent = new Intent(v.getContext(),TermDetail.class);
+                    intent.putExtra("termName", current.getTermName());
+                    intent.putExtra("termStart", current.getTermStart());
+                    intent.putExtra("termEnd", current.getTermEnd());
+                    intent.putExtra("termID", current.getId());
+                    intent.putExtra("position", position);
+                    v.getContext().startActivity(new Intent(intent));
+
                 }
             });
         }

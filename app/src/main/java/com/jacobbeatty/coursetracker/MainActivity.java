@@ -1,5 +1,6 @@
 package com.jacobbeatty.coursetracker;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     FloatingActionButton fab;
     ArrayList<Term> terms;
+    Context context;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<Term> terms = db.termDao().getAllTerms();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TermAdapter(terms);
+        adapter = new TermAdapter( terms);
         recyclerView.setAdapter(adapter);
 
         fab = findViewById(R.id.fab);

@@ -1,4 +1,4 @@
-package com.jacobbeatty.coursetracker;
+package com.jacobbeatty.coursetracker.Entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

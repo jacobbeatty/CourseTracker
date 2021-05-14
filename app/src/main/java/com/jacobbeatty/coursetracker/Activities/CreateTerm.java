@@ -1,18 +1,18 @@
-package com.jacobbeatty.coursetracker;
+package com.jacobbeatty.coursetracker.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import java.util.Date;
+import com.jacobbeatty.coursetracker.Utilities.AppDatabase;
+import com.jacobbeatty.coursetracker.Entity.Term;
+import com.jacobbeatty.coursetracker.R;
 
 public class CreateTerm extends AppCompatActivity {
 
@@ -45,7 +45,7 @@ public class CreateTerm extends AppCompatActivity {
 
 //                db.termDao().nukeTable();
                 Term term = new Term(termName.getText().toString(),termStart.getText().toString(),termEnd.getText().toString());
-                db.termDao().instertAll(term);
+                db.termDao().insertAll(term);
 
 
                 startActivity(new Intent(CreateTerm.this, MainActivity.class));

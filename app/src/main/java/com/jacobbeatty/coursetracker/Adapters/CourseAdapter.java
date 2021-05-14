@@ -1,42 +1,37 @@
-package com.jacobbeatty.coursetracker;
+package com.jacobbeatty.coursetracker.Adapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.jacobbeatty.coursetracker.R;
+import com.jacobbeatty.coursetracker.Entity.Term;
+import com.jacobbeatty.coursetracker.Activities.TermDetail;
+
 import java.util.List;
 
-import static androidx.core.content.ContextCompat.startActivity;
+public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
 
-public class TermAdapter extends RecyclerView.Adapter<TermAdapter.ViewHolder> {
-//    private final Context context;
     List<Term> terms;
-//    private final Context context;
 
-
-    public TermAdapter( List<Term> terms) {
+    public CourseAdapter(List<Term> terms) {
         this.terms = terms;
-//        this.context = context;
     }
 
     @Override
-    public TermAdapter.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+    public CourseAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.term_row, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(TermAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CourseAdapter.ViewHolder holder, int position) {
         Term term = terms.get(position);
         holder.termName.setText(terms.get(position).getTermName());
         holder.termStart.setText((CharSequence) terms.get(position).getTermStart());
@@ -69,7 +64,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.ViewHolder> {
                     Log.d("detail","onClick:Clicked detail for " + position + " term " + term.getTermName());
                     int position = getAdapterPosition();
                     final Term current = terms.get(position);
-                    Intent intent = new Intent(v.getContext(),TermDetail.class);
+                    Intent intent = new Intent(v.getContext(), TermDetail.class);
                     intent.putExtra("termName", current.getTermName());
                     intent.putExtra("termStart", current.getTermStart());
                     intent.putExtra("termEnd", current.getTermEnd());

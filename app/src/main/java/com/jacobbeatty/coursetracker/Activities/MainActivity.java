@@ -1,10 +1,14 @@
-package com.jacobbeatty.coursetracker;
+package com.jacobbeatty.coursetracker.Activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.jacobbeatty.coursetracker.Adapters.TermAdapter;
+import com.jacobbeatty.coursetracker.Utilities.AppDatabase;
+import com.jacobbeatty.coursetracker.Entity.Term;
+import com.jacobbeatty.coursetracker.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,9 +18,6 @@ import androidx.room.Room;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,13 @@
-package com.jacobbeatty.coursetracker;
+package com.jacobbeatty.coursetracker.Utilities;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.jacobbeatty.coursetracker.DAO.TermDao;
+import com.jacobbeatty.coursetracker.Entity.Term;
 
 @Database(entities = {Term.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

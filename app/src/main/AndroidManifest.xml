@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CourseTracker">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.CourseTracker.NoActionBar">
             <intent-filter>
@@ -19,8 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateTerm" />
-        <activity android:name=".TermDetail"/>
+        <activity android:name=".Activities.CreateTerm" />
+        <activity android:name=".Activities.TermDetail"/>
 
     </application>
 

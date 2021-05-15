@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".Activities.CreateTerm" />
         <activity android:name=".Activities.TermDetail"/>
+        <activity android:name=".Activities.CreateCourse"/>
 
     </application>
 

@@ -40,6 +40,7 @@ public class CreateTerm extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
+                        .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()
                         .build();
 

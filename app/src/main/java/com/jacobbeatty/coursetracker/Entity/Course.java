@@ -4,21 +4,22 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
-
 //@Entity(tableName = "courses",
 //        indices = {@Index(value = "course_id",unique = true),@Index(value = "term_id"),@Index(value = "instructor_id")},
 //        foreignKeys = {@ForeignKey(entity = TermEntity.class,
 //                parentColumns = "term_id",childColumns = "term_id",onDelete = ForeignKey.CASCADE)})
-@Entity(tableName = "courses")
+@Entity
 public class Course {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "course_id")
-    private int courseId;
+    private int courseID;
     @ColumnInfo(name = "term_id")
-    private int termId;
-    @ColumnInfo(name = "instructor_id")
-    private int instructorId;
+    private int termID;
+    @ColumnInfo(name = "instructor_name")
+    private String instructorName;
+    @ColumnInfo(name = "instructor_email")
+    private String instructorEmail;
+    @ColumnInfo(name = "instructor_phone")
+    private String instructorPhone;
     @ColumnInfo(name = "course_name")
     private String courseName;
     @ColumnInfo(name = "course_start")
@@ -30,10 +31,10 @@ public class Course {
     @ColumnInfo(name = "course_note")
     private String courseNote;
 
-    public Course(int courseId, int termId, int instructorId, String courseName, String courseStart, String courseEnd, String courseStatus, String courseNote) {
-        this.courseId = courseId;
-        this.termId = termId;
-        this.instructorId = instructorId;
+    public Course(String instructorName,String instructorEmail, String instructorPhone, String courseName, String courseStart, String courseEnd, String courseStatus, String courseNote) {
+//        this.courseID = courseID;
+//        this.termID = termID;
+        this.instructorName = instructorName;        this.instructorEmail = instructorEmail;        this.instructorPhone = instructorPhone;
         this.courseName = courseName;
         this.courseStart = courseStart;
         this.courseEnd = courseEnd;
@@ -41,28 +42,44 @@ public class Course {
         this.courseNote = courseNote;
     }
 
-    public int getCourseId() {
-        return courseId;
+    public String getInstructorEmail() {
+        return instructorEmail;
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+    public void setInstructorEmail(String instructorEmail) {
+        this.instructorEmail = instructorEmail;
     }
 
-    public int getTermId() {
-        return termId;
+    public String getInstructorPhone() {
+        return instructorPhone;
     }
 
-    public void setTermId(int termId) {
-        this.termId = termId;
+    public void setInstructorPhone(String instructorPhone) {
+        this.instructorPhone = instructorPhone;
     }
 
-    public int getInstructorId() {
-        return instructorId;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public void setInstructorId(int instructorId) {
-        this.instructorId = instructorId;
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
+
+    public int getTermID() {
+        return termID;
+    }
+
+    public void setTermID(int termID) {
+        this.termID = termID;
+    }
+
+    public String getInstructorName() {
+        return instructorName;
+    }
+
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
     }
 
     public String getCourseName() {

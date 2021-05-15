@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 1,
-    "identityHash": "f4879d2541326c1172850902b739f11c",
+    "version": 2,
+    "identityHash": "0a78e04791b8ef9c3e1364e46896626c",
     "entities": [
       {
         "tableName": "Term",
@@ -44,11 +44,11 @@
       },
       {
         "tableName": "Course",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`course_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `term_id` INTEGER NOT NULL, `instructor_name` TEXT, `instructor_email` TEXT, `instructor_phone` TEXT, `course_name` TEXT, `course_start` TEXT, `course_end` TEXT, `course_status` TEXT, `course_note` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`courseID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `term_id` INTEGER NOT NULL, `instructor_name` TEXT, `instructor_email` TEXT, `instructor_phone` TEXT, `course_name` TEXT, `course_start` TEXT, `course_end` TEXT, `course_status` TEXT, `course_note` TEXT)",
         "fields": [
           {
             "fieldPath": "courseID",
-            "columnName": "course_id",
+            "columnName": "courseID",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -109,7 +109,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "course_id"
+            "courseID"
           ],
           "autoGenerate": true
         },
@@ -120,7 +120,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f4879d2541326c1172850902b739f11c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0a78e04791b8ef9c3e1364e46896626c')"
     ]
   }
 }

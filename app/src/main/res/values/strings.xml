@@ -10,4 +10,10 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_term_detail">TermDetail</string>
+    <string-array name="status">
+        <item>in progress</item>
+        <item>completed</item>
+        <item>dropped</item>
+        <item>plan to take</item>
+    </string-array>
 </resources>

@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
 

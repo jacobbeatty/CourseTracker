@@ -6,12 +6,16 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.jacobbeatty.coursetracker.DAO.CourseDao;
 import com.jacobbeatty.coursetracker.DAO.TermDao;
+import com.jacobbeatty.coursetracker.Entity.Course;
 import com.jacobbeatty.coursetracker.Entity.Term;
 
-@Database(entities = {Term.class}, version = 1)
+@Database(entities = {Term.class, Course.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract TermDao termDao();
+    public abstract CourseDao courseDao();
+
     private static AppDatabase instance;
 
     public static synchronized AppDatabase getInstance(Context context) {

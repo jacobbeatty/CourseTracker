@@ -11,11 +11,11 @@ import java.util.List;
 
 @Dao
 public interface CourseDao {
-    @Query("SELECT * FROM courses")
-    List<Term> getAllCourses();
+    @Query("SELECT * FROM course")
+    List<Course> getAllCourses();
 
-    @Query("SELECT * FROM courses WHERE term_id= :termId")
-    List<Course>getCoursesbyTerm(int termId);
+    @Query("SELECT * FROM course")
+    List<Course> getAllCourse();
 
     @Insert
     void insertAll(Course... courses);

@@ -43,7 +43,7 @@ public class TermDetail extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_course);
 
 
-        
+
         termID = getIntent().getIntExtra("termID",0);
         termName = getIntent().getStringExtra("termName");
         termStart = getIntent().getStringExtra("termStart");

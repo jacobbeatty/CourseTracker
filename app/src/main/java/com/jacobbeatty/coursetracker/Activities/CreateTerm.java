@@ -22,13 +22,14 @@ public class CreateTerm extends AppCompatActivity {
     EditText termStart;
     EditText termEnd;
     Button button;
+    int termID;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_term);
-
+        termID = getIntent().getIntExtra("termID", -1);
         termName = findViewById(R.id.term_name);
         termStart = findViewById(R.id.term_start);
         termEnd = findViewById(R.id.term_end);
@@ -44,7 +45,7 @@ public class CreateTerm extends AppCompatActivity {
                         .allowMainThreadQueries()
                         .build();
 
-//                db.termDao().nukeTable();
+
                 Term term = new Term(termName.getText().toString(),termStart.getText().toString(),termEnd.getText().toString());
                 db.termDao().insertAll(term);
 

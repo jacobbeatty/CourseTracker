@@ -6,21 +6,28 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jacobbeatty.coursetracker.Adapters.CourseAdapter;
 import com.jacobbeatty.coursetracker.Adapters.TermAdapter;
+import com.jacobbeatty.coursetracker.DAO.CourseDao;
+import com.jacobbeatty.coursetracker.DAO.TermDao;
 import com.jacobbeatty.coursetracker.Entity.Course;
 import com.jacobbeatty.coursetracker.Entity.Term;
 import com.jacobbeatty.coursetracker.R;
 import com.jacobbeatty.coursetracker.Utilities.AppDatabase;
 
+import androidx.annotation.LongDef;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class TermDetail extends AppCompatActivity {
     int termID;
@@ -30,6 +37,12 @@ public class TermDetail extends AppCompatActivity {
     TextView termNameDetail;
     TextView termStartDetail;
     TextView termEndDetail;
+    int currentTerm;
+//    int termID = getIntent().getIntExtra("termID",-1);
+
+    public void setTermID(int termID) {
+        this.termID = termID;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +56,13 @@ public class TermDetail extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_course);
 
 
+        termID = getIntent().getIntExtra("termID",-1);
+        Log.d("termID in detail", String.valueOf(termID));
 
-        termID = getIntent().getIntExtra("termID",0);
+//        Intent intent = new Intent(TermDetail.this,CreateCourse.class);
+//        intent.putExtra("termID", termID);
+
+
         termName = getIntent().getStringExtra("termName");
         termStart = getIntent().getStringExtra("termStart");
         termEnd = getIntent().getStringExtra("termEnd");
@@ -60,19 +78,23 @@ public class TermDetail extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
         List<Course> course = db.courseDao().getAllCourses();
+        List<Course> courseTerm = db.courseDao().getCoursesByTermId(termID);
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CourseAdapter(course);
         recyclerView.setAdapter(adapter);
-
-
-
+        ((CourseAdapter) adapter).setCourse(courseTerm);
 
         FloatingActionButton fab = findViewById(R.id.fab_detail);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TermDetail.this, CreateCourse.class));
+//                startActivity(new Intent(TermDetail.this, CreateCourse.class));
+                Intent intent = new Intent(TermDetail.this,CreateCourse.class);
+                intent.putExtra("termID", termID);
+                startActivity(intent);
+
 
             }
         });
@@ -82,7 +104,9 @@ public class TermDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(TermDetail.this, MainActivity.class));
+
             }
         });
     }
+
 }

@@ -11,9 +11,9 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Course {
     @PrimaryKey(autoGenerate = true)
-    private int courseID;
+    public int courseID;
     @ColumnInfo(name = "term_id")
-    private int termID;
+    public int termID;
     @ColumnInfo(name = "instructor_name")
     private String instructorName;
     @ColumnInfo(name = "instructor_email")
@@ -31,9 +31,9 @@ public class Course {
     @ColumnInfo(name = "course_note")
     private String courseNote;
 
-    public Course(String instructorName,String instructorEmail, String instructorPhone, String courseName, String courseStart, String courseEnd, String courseStatus, String courseNote) {
+    public Course( int termID,String instructorName,String instructorEmail, String instructorPhone, String courseName, String courseStart, String courseEnd, String courseStatus, String courseNote) {
 //        this.courseID = courseID;
-//        this.termID = termID;
+        this.termID = termID;
         this.instructorName = instructorName;        this.instructorEmail = instructorEmail;        this.instructorPhone = instructorPhone;
         this.courseName = courseName;
         this.courseStart = courseStart;

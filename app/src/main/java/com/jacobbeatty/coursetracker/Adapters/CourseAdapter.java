@@ -10,16 +10,25 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jacobbeatty.coursetracker.Activities.CreateCourse;
+import com.jacobbeatty.coursetracker.DAO.TermDao;
 import com.jacobbeatty.coursetracker.Entity.Course;
+import com.jacobbeatty.coursetracker.Entity.Term;
 import com.jacobbeatty.coursetracker.R;
 import com.jacobbeatty.coursetracker.Entity.Course;
 //import com.jacobbeatty.coursetracker.Activities.CourseDetail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
 
-    List<Course> courses;
+//    List<Course> courses;
+    private List<Course> courses = new ArrayList<>();
+    private List<Term> terms;
+    int termID;
+
+
 
     public CourseAdapter(List<Course> courses) {
         this.courses = courses;
@@ -33,15 +42,26 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(CourseAdapter.ViewHolder holder, int position) {
-        Course course = courses.get(position);
-        holder.courseName.setText(courses.get(position).getCourseName());
-        holder.courseStart.setText((CharSequence) courses.get(position).getCourseStart());
-        holder.courseEnd.setText((CharSequence) courses.get(position).getCourseEnd());
-        holder.course = course;
-        holder.courseInstructorName.setText((CharSequence) courses.get(position).getInstructorName());
-        holder.courseInstructorPhone.setText((CharSequence) courses.get(position).getInstructorPhone());
-        holder.courseInstructorEmail.setText((CharSequence) courses.get(position).getInstructorEmail());
-        holder.courseSpinner.setText((CharSequence) courses.get(position).getCourseStatus());
+        if (courses != null){
+            final Course current = courses.get(position);
+
+            holder.courseName.setText(current.getCourseName());
+            Log.d("onBind", "onBindViewHolder: working");
+        }else {
+            holder.courseName.setText("blank");
+            Log.d("onBind", "onBindViewHolder: not working");
+
+
+        }
+//        Course course = courses.get(position);
+//        holder.courseName.setText(courses.get(position).getCourseName());
+//        holder.courseStart.setText((CharSequence) courses.get(position).getCourseStart());
+//        holder.courseEnd.setText((CharSequence) courses.get(position).getCourseEnd());
+//        holder.course = course;
+//        holder.courseInstructorName.setText((CharSequence) courses.get(position).getInstructorName());
+//        holder.courseInstructorPhone.setText((CharSequence) courses.get(position).getInstructorPhone());
+//        holder.courseInstructorEmail.setText((CharSequence) courses.get(position).getInstructorEmail());
+//        holder.courseSpinner.setText((CharSequence) courses.get(position).getCourseStatus());
 
     }
 
@@ -62,8 +82,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         LinearLayout toDetail;
         int position;
         Course course;
+
         public ViewHolder(View itemView) {
             super(itemView);
+            int position = getAdapterPosition();
+//            final Course current = mCourse.get(position);
+
             courseName = itemView.findViewById(R.id.course_name);
             courseStart = itemView.findViewById(R.id.course_start);
             courseEnd = itemView.findViewById(R.id.course_end);
@@ -73,6 +97,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             courseInstructorEmail = itemView.findViewById(R.id.course_instructor_email);
             courseSpinner = itemView.findViewById(R.id.course_status);
 
+
+
+
             toDetail = itemView.findViewById(R.id.row);
             toDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,17 +107,25 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                     Log.d("detail","onClick:Clicked detail for " + position + " course " + course.getCourseName());
                     int position = getAdapterPosition();
                     final Course current = courses.get(position);
-//                    Intent intent = new Intent(v.getContext(), CourseDetail.class);
-//                    intent.putExtra("courseName", current.getCourseName());
-//                    intent.putExtra("courseStart", current.getCourseStart());
-//                    intent.putExtra("courseEnd", current.getCourseEnd());
-//                    intent.putExtra("courseID", current.getId());
-//                    intent.putExtra("position", position);
-//                    v.getContext().startActivity(new Intent(intent));
-
+                    Intent intent = new Intent(v.getContext(), CreateCourse.class);
+                    intent.putExtra("courseName", current.getCourseName());
+                    intent.putExtra("courseStart", current.getCourseStart());
+                    intent.putExtra("courseEnd", current.getCourseEnd());
+                    intent.putExtra("courseId", current.getCourseID());
+                    intent.putExtra("termID", current.getTermID());
+                    intent.putExtra("mentorName", current.getInstructorName());
+                    intent.putExtra("mentorPhone", current.getInstructorPhone());
+                    intent.putExtra("mentorEmail", current.getInstructorEmail());
+                    intent.putExtra("status", current.getCourseStatus());
+                    intent.putExtra("notes", current.getCourseNote());
+                    intent.putExtra("position", position);
                 }
             });
         }
+    }
+    public void setCourse(List<Course> courses) {
+        this.courses = courses;
+        notifyDataSetChanged();
     }
 }
 

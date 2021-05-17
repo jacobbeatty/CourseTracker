@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jacobbeatty.coursetracker.Adapters.TermAdapter;
+import com.jacobbeatty.coursetracker.DAO.TermDao;
 import com.jacobbeatty.coursetracker.Utilities.AppDatabase;
 import com.jacobbeatty.coursetracker.Entity.Term;
 import com.jacobbeatty.coursetracker.R;
@@ -33,23 +34,26 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recycler_view);
-
-
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
-
+        db.courseDao().nukeCourseTable();
+        db.termDao().nukeTermTable();
         List<Term> terms = db.termDao().getAllTerms();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TermAdapter( terms);
         recyclerView.setAdapter(adapter);
+
+
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "OnClick: clicked");
                 startActivity(new Intent(MainActivity.this, CreateTerm.class));
+//                db.termDao().nukeTermTable();
+//                db.courseDao().nukeCourseTable();
             }
         });
 

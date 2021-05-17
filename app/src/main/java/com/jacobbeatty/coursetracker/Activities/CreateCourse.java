@@ -2,6 +2,7 @@ package com.jacobbeatty.coursetracker.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,9 +15,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import com.jacobbeatty.coursetracker.DAO.CourseDao;
 import com.jacobbeatty.coursetracker.Utilities.AppDatabase;
 import com.jacobbeatty.coursetracker.Entity.Course;
 import com.jacobbeatty.coursetracker.R;
+
+import java.util.List;
 
 public class CreateCourse extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -31,7 +35,6 @@ public class CreateCourse extends AppCompatActivity implements AdapterView.OnIte
     EditText instructorName;
     EditText instructorEmail;
     EditText instructorPhone;
-
     Spinner spinner;
 
 
@@ -46,6 +49,7 @@ public class CreateCourse extends AppCompatActivity implements AdapterView.OnIte
 
         courseID = getIntent().getIntExtra("courseID", -1);
         termID = getIntent().getIntExtra("termID", -1);
+        Log.d("termID in createcourse", String.valueOf(termID));
         courseName = findViewById(R.id.course_name);
         courseStart = findViewById(R.id.course_start);
         courseEnd = findViewById(R.id.course_end);
@@ -62,6 +66,11 @@ public class CreateCourse extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(this);
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
 
 
 
@@ -73,10 +82,7 @@ public class CreateCourse extends AppCompatActivity implements AdapterView.OnIte
                         .allowMainThreadQueries()
                         .build();
 
-//                db.courseDao().nukeTable();
-//    public Course(int termID, int courseID, String instructorName,String instructorEmail, String instructorPhone, String courseName, String courseStart, String courseEnd, String courseStatus, String courseNote) {
-
-                    Course course = new Course(instructorName.getText().toString(),instructorEmail.getText().toString(),instructorPhone.getText().toString(),courseName.getText().toString(),courseStart.getText().toString(),courseEnd.getText().toString(),spinner.getSelectedItem().toString(),courseNote.getText().toString());
+                Course course = new Course( termID, instructorName.getText().toString(), instructorPhone.getText().toString(), instructorEmail.getText().toString(),courseName.getText().toString(), courseStart.getText().toString(), courseEnd.getText().toString(),  spinner.getSelectedItem().toString(), courseNote.getText().toString());
                 db.courseDao().insertAll(course);
 
 

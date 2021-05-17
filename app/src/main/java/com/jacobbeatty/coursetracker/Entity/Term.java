@@ -3,20 +3,18 @@ package com.jacobbeatty.coursetracker.Entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import java.util.Date;
 
 @Entity
 public class Term {
 
     public Term(String termName, String termStart, String termEnd) {
+//        this.termID =termID;
         this.termName = termName;
         this.termStart = termStart;
         this.termEnd = termEnd;
     }
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int termID;
     @ColumnInfo(name="term_start")
 //    @TypeConverters(Converter.class)
     private String termStart;
@@ -27,11 +25,11 @@ public class Term {
     private String termName;
 
     public int getId() {
-        return id;
+        return termID;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.termID = id;
     }
 
     public String getTermName() {

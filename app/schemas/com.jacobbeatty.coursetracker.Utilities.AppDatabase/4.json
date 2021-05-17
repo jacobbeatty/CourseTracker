@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 3,
-    "identityHash": "629cf2933887b36fcd7e400515d649e4",
+    "version": 4,
+    "identityHash": "2c2ee308ba832a7b91db6ed75155026e",
     "entities": [
       {
         "tableName": "Term",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`termID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `term_start` TEXT, `term_end` TEXT, `term_name` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`termID` INTEGER NOT NULL, `term_start` TEXT, `term_end` TEXT, `term_name` TEXT, PRIMARY KEY(`termID`))",
         "fields": [
           {
             "fieldPath": "termID",
@@ -37,7 +37,7 @@
           "columnNames": [
             "termID"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -120,7 +120,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '629cf2933887b36fcd7e400515d649e4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2c2ee308ba832a7b91db6ed75155026e')"
     ]
   }
 }

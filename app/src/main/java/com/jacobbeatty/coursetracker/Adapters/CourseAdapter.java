@@ -90,13 +90,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
 //            final Course current = mCourse.get(position);
 
             courseName = itemView.findViewById(R.id.course_name);
-            courseStart = itemView.findViewById(R.id.course_start);
-            courseEnd = itemView.findViewById(R.id.course_end);
-            courseNotes = itemView.findViewById(R.id.course_note);
-            courseInstructorName = itemView.findViewById(R.id.course_instructor_name);
-            courseInstructorPhone = itemView.findViewById(R.id.course_instructor_phone);
-            courseInstructorEmail = itemView.findViewById(R.id.course_instructor_email);
-            courseSpinner = itemView.findViewById(R.id.course_status);
+//            courseStart = itemView.findViewById(R.id.course_start);
+//            courseEnd = itemView.findViewById(R.id.course_end);
+//            courseNotes = itemView.findViewById(R.id.course_note);
+//            courseInstructorName = itemView.findViewById(R.id.course_instructor_name);
+//            courseInstructorPhone = itemView.findViewById(R.id.course_instructor_phone);
+//            courseInstructorEmail = itemView.findViewById(R.id.course_instructor_email);
+//            courseSpinner = itemView.findViewById(R.id.course_status);
 
 
 

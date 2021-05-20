@@ -6,10 +6,24 @@
     android:orientation="vertical"
     android:padding="24dp">
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/saveTermButton"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/deleteTermButton"
+            android:layout_width="167dp"
+            android:layout_height="wrap_content"
+            android:text="Delete Term" />
+
+        <Button
+            android:id="@+id/saveTermButton"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:text="save changes"
+            android:translationX="20sp" />
+    </LinearLayout>
 
 
     <EditText
@@ -22,13 +36,13 @@
         android:id="@+id/term_start_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/term_end_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:textSize="14sp" />
 
 
     <ScrollView

@@ -7,10 +7,24 @@
     android:padding="24dp">
 
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/saveAssessmentButton"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/deleteAssessmentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete Assessment" />
+
+        <Button
+            android:id="@+id/saveAssessmentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="save changes"
+            android:translationX="20sp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/assessment_name_detail"
@@ -25,22 +39,21 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/assessment_end_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp" />
-
-    <EditText
         android:id="@+id/assessment_status_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp" />
 
 
+    <Button
+        android:id="@+id/createNotificationButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Notification" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="421dp">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_assessment_detail"

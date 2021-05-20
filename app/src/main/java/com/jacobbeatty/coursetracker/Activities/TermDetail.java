@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class TermDetail extends AppCompatActivity {
     EditText termStartDetail;
     EditText termEndDetail;
     Term currentTerm;
+    int numberOfCourses;
 
 //    int termID = getIntent().getIntExtra("termID",-1);
 
@@ -52,8 +54,8 @@ public class TermDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.term_detail);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         RecyclerView recyclerView;
         RecyclerView.Adapter adapter;
@@ -92,41 +94,43 @@ public class TermDetail extends AppCompatActivity {
 
         List<Term> allTerms= db.termDao().getAllTerms();
 
-        for (Term t:allTerms){
-            if(t.getId()==termID)currentTerm=t;
+        for (Term term:allTerms){
+            if(term.getId()==termID)currentTerm=term;
         }
 
         Button saveTermButton = findViewById(R.id.saveTermButton);
         saveTermButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String termName = termNameDetail.getText().toString();
-//                String start = termStartDetail.getText().toString();
-//                String end = termEndDetail.getText().toString();
-
                 currentTerm.setTermName(termNameDetail.getText().toString());
                 currentTerm.setTermStart(termStartDetail.getText().toString());
                 currentTerm.setTermEnd(termEndDetail.getText().toString());
-
-
-
                 db.termDao().update(currentTerm);
                 startActivity(new Intent(TermDetail.this, MainActivity.class));
-
-
-
-
             }
         });
-//        public void saveTerm(View view) {
-//            String termName = termNameDetail.getText().toString();
-//        };
+        Button deleteTermButton = findViewById(R.id.deleteTermButton);
+        deleteTermButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numberOfCourses = courseTerm.size();
+                if (numberOfCourses > 0 ){
+                    Toast.makeText(getApplicationContext(),"Term has courses, can't delete.",Toast.LENGTH_SHORT).show();
+                    Log.d("number of courses IF", String.valueOf(numberOfCourses));
+                }else{
+                    Log.d("number of courses ELSE", String.valueOf(numberOfCourses));
+                    db.termDao().delete(currentTerm);
+                }
+                startActivity(new Intent(TermDetail.this, MainActivity.class));
+            }
+        });
+
+
 
         FloatingActionButton fab = findViewById(R.id.fab_detail);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(TermDetail.this, CreateCourse.class));
                 Intent intent = new Intent(TermDetail.this,CreateCourse.class);
                 intent.putExtra("termID", termID);
                 startActivity(intent);

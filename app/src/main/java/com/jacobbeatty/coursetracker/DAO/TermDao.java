@@ -1,6 +1,7 @@
 package com.jacobbeatty.coursetracker.DAO;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -21,6 +22,9 @@ public interface TermDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(Term term);
+
+    @Delete
+    void delete(Term term);
 
 
     @Insert

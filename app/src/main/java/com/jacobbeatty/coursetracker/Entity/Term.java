@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey;
 public class Term {
 
     public Term(String termName, String termStart, String termEnd) {
-//        this.termID =termID;
         this.termName = termName;
         this.termStart = termStart;
         this.termEnd = termEnd;
@@ -16,7 +15,6 @@ public class Term {
     @PrimaryKey(autoGenerate = true)
     public int termID;
     @ColumnInfo(name="term_start")
-//    @TypeConverters(Converter.class)
     private String termStart;
     @ColumnInfo(name="term_end")
 //    @TypeConverters(Converter.class)

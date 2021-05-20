@@ -6,10 +6,24 @@
     android:orientation="vertical"
     android:padding="24dp">
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/saveCourseButton"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/deleteCourseButton"
+            android:layout_width="167dp"
+            android:layout_height="wrap_content"
+            android:text="Delete Course" />
+
+        <Button
+            android:id="@+id/saveCourseButton"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:text="save changes"
+            android:translationX="20sp" />
+    </LinearLayout>
 
 
     <EditText
@@ -18,17 +32,43 @@
         android:layout_height="wrap_content"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/course_start_detail"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/course_end_detail"
+        <EditText
+            android:id="@+id/course_start_detail"
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/startCourseNotifyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="notify" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/course_end_detail"
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/endCourseNotifyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Notify" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/course_instructor_name_detail"
@@ -52,16 +92,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp" />
-    <EditText
-        android:id="@+id/course_note_detail"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/course_note_detail"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/shareNoteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Share" />
+    </LinearLayout>
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="62dp">
+        android:layout_height="71dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_course_detail"

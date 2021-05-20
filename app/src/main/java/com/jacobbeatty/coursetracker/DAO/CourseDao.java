@@ -1,6 +1,7 @@
 package com.jacobbeatty.coursetracker.DAO;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -24,6 +25,9 @@ public interface CourseDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(Course course);
+
+    @Delete
+    void delete(Course course);
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

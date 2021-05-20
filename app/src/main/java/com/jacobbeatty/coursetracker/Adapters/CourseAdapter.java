@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jacobbeatty.coursetracker.Activities.CourseDetail;
 import com.jacobbeatty.coursetracker.Activities.CreateCourse;
 import com.jacobbeatty.coursetracker.DAO.TermDao;
 import com.jacobbeatty.coursetracker.Entity.Course;
@@ -24,7 +25,7 @@ import java.util.List;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
 
 //    List<Course> courses;
-    private List<Course> courses = new ArrayList<>();
+    private List<Course> courses;
     private List<Term> terms;
     int termID;
 
@@ -104,21 +105,23 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             toDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("detail","onClick:Clicked detail for " + position + " course " + course.getCourseName());
+//                    Log.d("detail","onClick:Clicked detail for " + position + " course " + course.getCourseName());
                     int position = getAdapterPosition();
                     final Course current = courses.get(position);
-                    Intent intent = new Intent(v.getContext(), CreateCourse.class);
+                    Intent intent = new Intent(v.getContext(), CourseDetail.class);
                     intent.putExtra("courseName", current.getCourseName());
                     intent.putExtra("courseStart", current.getCourseStart());
                     intent.putExtra("courseEnd", current.getCourseEnd());
                     intent.putExtra("courseId", current.getCourseID());
                     intent.putExtra("termID", current.getTermID());
-                    intent.putExtra("mentorName", current.getInstructorName());
-                    intent.putExtra("mentorPhone", current.getInstructorPhone());
-                    intent.putExtra("mentorEmail", current.getInstructorEmail());
-                    intent.putExtra("status", current.getCourseStatus());
-                    intent.putExtra("notes", current.getCourseNote());
+                    intent.putExtra("courseInstructorName", current.getInstructorName());
+                    intent.putExtra("courseInstructorPhone", current.getInstructorPhone());
+                    intent.putExtra("courseInstructorEmail", current.getInstructorEmail());
+                    intent.putExtra("courseStatus", current.getCourseStatus());
+                    intent.putExtra("courseNote", current.getCourseNote());
                     intent.putExtra("position", position);
+                    v.getContext().startActivity(new Intent(intent));
+
                 }
             });
         }

@@ -16,4 +16,8 @@
         <item>dropped</item>
         <item>plan to take</item>
     </string-array>
+    <string-array name="type">
+        <item>PA</item>
+        <item>OA</item>
+    </string-array>
 </resources>

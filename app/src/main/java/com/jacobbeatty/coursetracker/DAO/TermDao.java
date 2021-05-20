@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.jacobbeatty.coursetracker.Entity.Course;
 import com.jacobbeatty.coursetracker.Entity.Term;
@@ -15,9 +16,11 @@ public interface TermDao {
     @Query("SELECT * FROM term")
     List<Term> getAllTerms();
 
-//    @Insert (onConflict = OnConflictStrategy.REPLACE)
-//    void insert(Term term);
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
+    void insert(Term term);
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void update(Term term);
 
 
     @Insert

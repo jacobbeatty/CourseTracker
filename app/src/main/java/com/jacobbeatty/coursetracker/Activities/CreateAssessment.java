@@ -15,26 +15,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import com.jacobbeatty.coursetracker.DAO.CourseDao;
-import com.jacobbeatty.coursetracker.Utilities.AppDatabase;
-import com.jacobbeatty.coursetracker.Entity.Course;
+import com.jacobbeatty.coursetracker.Entity.Assessment;
 import com.jacobbeatty.coursetracker.R;
+import com.jacobbeatty.coursetracker.Utilities.AppDatabase;
 
-import java.util.List;
+public class CreateAssessment extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-public class CreateCourse extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private static final String TAG = "CreateAssessment";
 
-    private static final String TAG = "CreateCourse";
-
+    int assessmentID;
     int courseID;
-    int termID;
-    EditText courseName;
-    EditText courseStart;
-    EditText courseEnd;
-    EditText courseNote;
-    EditText instructorName;
-    EditText instructorEmail;
-    EditText instructorPhone;
+    EditText assessmentName;
+    EditText assessmentStart;
+    EditText assessmentEnd;
     Spinner spinner;
 
 
@@ -45,23 +38,19 @@ public class CreateCourse extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_course);
+        setContentView(R.layout.create_assessment);
 
+        assessmentID = getIntent().getIntExtra("assessmentID", -1);
         courseID = getIntent().getIntExtra("courseID", -1);
-        termID = getIntent().getIntExtra("termID", -1);
-        Log.d("termID in createcourse", String.valueOf(termID));
-        courseName = findViewById(R.id.course_name);
-        courseStart = findViewById(R.id.course_start);
-        courseEnd = findViewById(R.id.course_end);
-        instructorName = findViewById(R.id.instructor_name);
-        instructorEmail = findViewById(R.id.instructor_email);
-        instructorPhone = findViewById(R.id.instructor_phone);
-        courseNote = findViewById(R.id.course_note);
+        Log.d("courseID in createassessment", String.valueOf(courseID));
+        assessmentName = findViewById(R.id.assessment_name);
+        assessmentStart = findViewById(R.id.assessment_start);
+        assessmentEnd = findViewById(R.id.assessment_end);
 
-        button = findViewById(R.id.button_course);
-        spinner = findViewById(R.id.status_spinner);
+        button = findViewById(R.id.button_assessment);
+        spinner = findViewById(R.id.type_spinner);
         //Spinner stuff
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.status, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -82,11 +71,11 @@ public class CreateCourse extends AppCompatActivity implements AdapterView.OnIte
                         .allowMainThreadQueries()
                         .build();
 
-                Course course = new Course( termID, instructorName.getText().toString(), instructorPhone.getText().toString(), instructorEmail.getText().toString(),courseName.getText().toString(), courseStart.getText().toString(), courseEnd.getText().toString(),  spinner.getSelectedItem().toString(), courseNote.getText().toString());
-                db.courseDao().insertAll(course);
+                Assessment assessment = new Assessment( courseID ,assessmentName.getText().toString(), assessmentStart.getText().toString(), assessmentEnd.getText().toString(),  spinner.getSelectedItem().toString());
+                db.assessmentDao().insertAll(assessment);
 
 
-                startActivity(new Intent(CreateCourse.this, MainActivity.class));
+                startActivity(new Intent(CreateAssessment.this, MainActivity.class));
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.jacobbeatty.coursetracker.Activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,6 +23,8 @@ import androidx.room.Room;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -34,10 +37,11 @@ public class TermDetail extends AppCompatActivity {
     String termName;
     String termStart;
     String termEnd;
-    TextView termNameDetail;
-    TextView termStartDetail;
-    TextView termEndDetail;
-    int currentTerm;
+    EditText termNameDetail;
+    EditText termStartDetail;
+    EditText termEndDetail;
+    Term currentTerm;
+
 //    int termID = getIntent().getIntExtra("termID",-1);
 
     public void setTermID(int termID) {
@@ -86,6 +90,38 @@ public class TermDetail extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         ((CourseAdapter) adapter).setCourse(courseTerm);
 
+        List<Term> allTerms= db.termDao().getAllTerms();
+
+        for (Term t:allTerms){
+            if(t.getId()==termID)currentTerm=t;
+        }
+
+        Button saveTermButton = findViewById(R.id.saveTermButton);
+        saveTermButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                String termName = termNameDetail.getText().toString();
+//                String start = termStartDetail.getText().toString();
+//                String end = termEndDetail.getText().toString();
+
+                currentTerm.setTermName(termNameDetail.getText().toString());
+                currentTerm.setTermStart(termStartDetail.getText().toString());
+                currentTerm.setTermEnd(termEndDetail.getText().toString());
+
+
+
+                db.termDao().update(currentTerm);
+                startActivity(new Intent(TermDetail.this, MainActivity.class));
+
+
+
+
+            }
+        });
+//        public void saveTerm(View view) {
+//            String termName = termNameDetail.getText().toString();
+//        };
+
         FloatingActionButton fab = findViewById(R.id.fab_detail);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +143,8 @@ public class TermDetail extends AppCompatActivity {
 
             }
         });
+
+
     }
 
 }

@@ -46,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
-        db.courseDao().nukeCourseTable();
-        db.termDao().nukeTermTable();
+//        db.courseDao().nukeCourseTable();
+//        db.termDao().nukeTermTable();
+//        db.assessmentDao().nukeAssessmentTable();
         List<Term> terms = db.termDao().getAllTerms();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TermAdapter( terms);

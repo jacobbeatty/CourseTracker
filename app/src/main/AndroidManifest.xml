@@ -22,6 +22,9 @@
         <activity android:name=".Activities.CreateTerm" />
         <activity android:name=".Activities.TermDetail"/>
         <activity android:name=".Activities.CreateCourse"/>
+        <activity android:name=".Activities.CourseDetail"/>
+        <activity android:name=".Activities.AssessmentDetail"/>
+        <activity android:name=".Activities.CreateAssessment"/>
 
     </application>
 

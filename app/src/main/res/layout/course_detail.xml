@@ -9,23 +9,51 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/saveTermButton"/>
+        android:id="@+id/saveCourseButton"/>
 
 
     <EditText
-        android:id="@+id/term_name_detail"
+        android:id="@+id/course_name_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/term_start_detail"
+        android:id="@+id/course_start_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/term_end_detail"
+        android:id="@+id/course_end_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/course_instructor_name_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/course_instructor_phone_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/course_instructor_email_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+    <EditText
+        android:id="@+id/course_status_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+    <EditText
+        android:id="@+id/course_note_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp" />
@@ -33,10 +61,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="293dp">
+        android:layout_height="62dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_course"
+            android:id="@+id/recycler_view_course_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_anchor="@+id/include"
@@ -63,6 +91,3 @@
         app:srcCompat="@drawable/abc_vector_test" />
 
 </LinearLayout>
-
-
-

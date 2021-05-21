@@ -45,6 +45,10 @@
         android:textSize="14sp" />
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Course List:"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="293dp">

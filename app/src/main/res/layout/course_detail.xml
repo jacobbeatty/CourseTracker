@@ -87,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp" />
-    <EditText
+    <Spinner
         android:id="@+id/course_status_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -113,6 +113,10 @@
     </LinearLayout>
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Assessment List:"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="71dp">

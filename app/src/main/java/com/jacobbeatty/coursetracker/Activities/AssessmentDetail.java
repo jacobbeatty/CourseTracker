@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +48,7 @@ public class AssessmentDetail extends AppCompatActivity {
     EditText assessmentStartDetail;
     EditText assessmentEndDetail;
 
-    TextView assessmentStatusDetail;
+    Spinner assessmentStatusDetail;
     Assessment currentAssessment;
     Date assessmentDate;
 
@@ -85,7 +87,7 @@ public class AssessmentDetail extends AppCompatActivity {
         assessmentStartDetail.setText(assessmentStart);
 //        assessmentEndDetail.setText(assessmentEnd);
 
-        assessmentStatusDetail.setText(assessmentStatus);
+//        assessmentStatusDetail.setText(assessmentStatus);
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
                 .fallbackToDestructiveMigration()
@@ -137,6 +139,18 @@ public class AssessmentDetail extends AppCompatActivity {
         }
 
 
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(AssessmentDetail.this, R.array.type, android.R.layout.simple_spinner_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        assessmentStatusDetail.setAdapter(adapterSpinner);
+        if(currentAssessment!=null){
+            switch  (currentAssessment.getAssessmentType()){
+                case "PA" : assessmentStatusDetail.setSelection(0);
+                    break;
+                case "OA" : assessmentStatusDetail.setSelection(1);
+                    break;
+            }
+        }
+
         Button saveAssessmentButton = findViewById(R.id.saveAssessmentButton);
         saveAssessmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +159,7 @@ public class AssessmentDetail extends AppCompatActivity {
                     currentAssessment.setAssessmentName(assessmentNameDetail.getText().toString());
                     currentAssessment.setAssessmentStart(assessmentStartDetail.getText().toString());
 //                    currentAssessment.setAssessmentEnd(assessmentEndDetail.getText().toString());
-                    currentAssessment.setAssessmentType(assessmentStatusDetail.getText().toString());
+                    currentAssessment.setAssessmentType(assessmentStatusDetail.getSelectedItem().toString());
                 }else Log.d("currentAssessment","is null");
                 db.assessmentDao().update(currentAssessment);
                 startActivity(new Intent(AssessmentDetail.this, MainActivity.class));

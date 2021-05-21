@@ -31,8 +31,11 @@ import androidx.room.Room;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +69,7 @@ public class CourseDetail extends AppCompatActivity {
     EditText courseInstructorNameDetail;
     EditText courseInstructorPhoneDetail;
     EditText courseInstructorEmailDetail;
-    EditText courseStatusDetail;
+    Spinner courseStatusDetail;
     EditText courseNoteDetail;
     Course currentCourse;
     public static int alertID;
@@ -121,7 +124,6 @@ public class CourseDetail extends AppCompatActivity {
         courseInstructorNameDetail.setText(courseInstructorName);
         courseInstructorPhoneDetail.setText(courseInstructorPhone);
         courseInstructorEmailDetail.setText(courseInstructorEmail);
-        courseStatusDetail.setText(courseStatus);
         courseNoteDetail.setText(courseNote);
 
 
@@ -148,7 +150,21 @@ public class CourseDetail extends AppCompatActivity {
             if(course.getCourseID()==courseID)currentCourse = course;
         }
 
-
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(CourseDetail.this, R.array.status, android.R.layout.simple_spinner_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        courseStatusDetail.setAdapter(adapterSpinner);
+        if(currentCourse!=null){
+            switch  (currentCourse.getCourseStatus()){
+                case "in progress" : courseStatusDetail.setSelection(0);
+                    break;
+                case "completed" : courseStatusDetail.setSelection(1);
+                    break;
+                case "dropped" : courseStatusDetail.setSelection(2);
+                    break;
+                case "plan to take" : courseStatusDetail.setSelection(3);
+                    break;
+            }
+        }
 
 
 
@@ -164,7 +180,7 @@ public class CourseDetail extends AppCompatActivity {
                 currentCourse.setInstructorName(courseInstructorNameDetail.getText().toString());
                 currentCourse.setInstructorPhone(courseInstructorPhoneDetail.getText().toString());
                 currentCourse.setInstructorEmail(courseInstructorEmailDetail.getText().toString());
-                currentCourse.setCourseStatus(courseStatusDetail.getText().toString());
+                currentCourse.setCourseStatus(courseStatusDetail.getSelectedItem().toString());
                 currentCourse.setCourseNote(courseNoteDetail.getText().toString());
                 db.courseDao().update(currentCourse);
                 startActivity(new Intent(CourseDetail.this, MainActivity.class));

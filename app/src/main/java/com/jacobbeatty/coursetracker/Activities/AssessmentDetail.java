@@ -179,7 +179,7 @@ public class AssessmentDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent setReminderIntent = new Intent(AssessmentDetail.this, BroadcastReceiver.class);
-                setReminderIntent.putExtra("key", "Assessment Today: " + currentAssessment.getAssessmentName());
+                setReminderIntent.putExtra("key", "This assessment starts today:" + currentAssessment.getAssessmentName());
                 PendingIntent sender = PendingIntent.getBroadcast(AssessmentDetail.this,++alertID,setReminderIntent,0);
                 AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager.set(AlarmManager.RTC_WAKEUP, assessmentDate.getTime() ,sender);

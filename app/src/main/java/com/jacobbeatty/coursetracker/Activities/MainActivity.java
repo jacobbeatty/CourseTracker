@@ -91,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.delete_db) {
             AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
                     .fallbackToDestructiveMigration()
@@ -101,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
             db.courseDao().nukeCourseTable();
             db.termDao().nukeTermTable();
             db.assessmentDao().nukeAssessmentTable();
-            Log.d("onselect", "if ran");
             startActivity(new Intent(MainActivity.this, MainActivity.class));
 
         }

@@ -18,12 +18,12 @@
 
     </style>
 
-    <style name="Theme.CourseTracker.NoActionBar">
+    <style name="Theme.CourseTracker.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.CourseTracker.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.CourseTracker.AppBarOverlay"  />
 
     <style name="Theme.CourseTracker.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

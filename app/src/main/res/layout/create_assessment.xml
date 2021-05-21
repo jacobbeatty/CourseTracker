@@ -25,29 +25,17 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/assessment_start"
-            android:hint="Assessment Start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="75px"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/assessment_end"
-            android:hint="Assessment End"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="75px"/>
+            android:layout_marginBottom="75px"
+            android:hint="Assessment Date (Ex: 10/31/2021)" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
+        android:id="@+id/type_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/type_spinner"/>
+        android:layout_height="48dp" />
 
 
     <Button

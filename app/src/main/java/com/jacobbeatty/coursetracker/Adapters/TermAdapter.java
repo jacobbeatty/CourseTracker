@@ -37,8 +37,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.ViewHolder> {
     public void onBindViewHolder(TermAdapter.ViewHolder holder, int position) {
         Term term = terms.get(position);
         holder.termName.setText(terms.get(position).getTermName());
-        holder.termStart.setText((CharSequence) terms.get(position).getTermStart());
-        holder.termEnd.setText((CharSequence) terms.get(position).getTermEnd());
+//        holder.termStart.setText((CharSequence) terms.get(position).getTermStart());
+//        holder.termEnd.setText((CharSequence) terms.get(position).getTermEnd());
         holder.term = term;
 
     }

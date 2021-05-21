@@ -234,7 +234,7 @@ public class CourseDetail extends AppCompatActivity {
 //                            Toast.LENGTH_SHORT).show();
 //                } catch (Exception e) {
 //                    Toast.makeText(getApplicationContext(),
-//                            "SMS faild, please try again later!",
+//                            "SMS failed to send, please try again later!",
 //                            Toast.LENGTH_SHORT).show();
 //                    e.printStackTrace();
 //

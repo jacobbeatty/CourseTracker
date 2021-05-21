@@ -89,9 +89,9 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.Vi
 //            final Assessment current = mAssessment.get(position);
 
             assessmentName = itemView.findViewById(R.id.assessment_name);
-            assessmentStart = itemView.findViewById(R.id.assessment_start);
-            assessmentEnd = itemView.findViewById(R.id.assessment_end);
-            assessmentSpinner = itemView.findViewById(R.id.assessment_status);
+//            assessmentStart = itemView.findViewById(R.id.assessment_start);
+//            assessmentEnd = itemView.findViewById(R.id.assessment_end);
+//            assessmentSpinner = itemView.findViewById(R.id.assessment_status);
 
 
 
@@ -106,7 +106,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.Vi
                     Intent intent = new Intent(v.getContext(), AssessmentDetail.class);
                     intent.putExtra("assessmentName", current.getAssessmentName());
                     intent.putExtra("assessmentStart", current.getAssessmentStart());
-                    intent.putExtra("assessmentEnd", current.getAssessmentEnd());
+//                    intent.putExtra("assessmentEnd", current.getAssessmentEnd());
                     intent.putExtra("assessmentID", current.getAssessmentID());
                     intent.putExtra("courseID", current.getCourseID());
                     intent.putExtra("assessmentStatus", current.getAssessmentType());

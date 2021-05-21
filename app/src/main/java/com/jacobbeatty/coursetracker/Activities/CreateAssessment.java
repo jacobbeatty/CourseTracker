@@ -45,7 +45,7 @@ public class CreateAssessment extends AppCompatActivity implements AdapterView.O
         Log.d("courseID in createassessment", String.valueOf(courseID));
         assessmentName = findViewById(R.id.assessment_name);
         assessmentStart = findViewById(R.id.assessment_start);
-        assessmentEnd = findViewById(R.id.assessment_end);
+//        assessmentEnd = findViewById(R.id.assessment_end);
 
         button = findViewById(R.id.button_assessment);
         spinner = findViewById(R.id.type_spinner);
@@ -71,7 +71,7 @@ public class CreateAssessment extends AppCompatActivity implements AdapterView.O
                         .allowMainThreadQueries()
                         .build();
 
-                Assessment assessment = new Assessment( courseID ,assessmentName.getText().toString(), assessmentStart.getText().toString(), assessmentEnd.getText().toString(),  spinner.getSelectedItem().toString());
+                Assessment assessment = new Assessment( courseID ,assessmentName.getText().toString(), assessmentStart.getText().toString(), spinner.getSelectedItem().toString());
                 db.assessmentDao().insertAll(assessment);
 
 

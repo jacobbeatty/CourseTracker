@@ -19,7 +19,7 @@ import java.sql.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Term.class, Course.class, Assessment.class}, version = 7)
+@Database(entities = {Term.class, Course.class, Assessment.class}, version = 8)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract TermDao termDao();
     public abstract CourseDao courseDao();

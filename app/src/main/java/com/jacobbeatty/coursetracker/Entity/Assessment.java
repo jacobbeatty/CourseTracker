@@ -15,8 +15,8 @@ public class Assessment {
     private String assessmentName;
     @ColumnInfo(name = "assessment_start")
     private String assessmentStart;
-    @ColumnInfo(name = "assessment_end")
-    private String assessmentEnd;
+//    @ColumnInfo(name = "assessment_end")
+//    private String assessmentEnd;
     @ColumnInfo(name = "assessment_type")
     private String assessmentType;
 
@@ -52,13 +52,13 @@ public class Assessment {
         this.assessmentStart = assessmentStart;
     }
 
-    public String getAssessmentEnd() {
-        return assessmentEnd;
-    }
-
-    public void setAssessmentEnd(String assessmentEnd) {
-        this.assessmentEnd = assessmentEnd;
-    }
+//    public String getAssessmentEnd() {
+//        return assessmentEnd;
+//    }
+//
+//    public void setAssessmentEnd(String assessmentEnd) {
+//        this.assessmentEnd = assessmentEnd;
+//    }
 
     public String getAssessmentType() {
         return assessmentType;
@@ -68,11 +68,11 @@ public class Assessment {
         this.assessmentType = assessmentType;
     }
 
-    public Assessment(int courseID,String assessmentName, String assessmentStart, String assessmentEnd, String assessmentType) {
+    public Assessment(int courseID,String assessmentName, String assessmentStart, String assessmentType) {
         this.courseID = courseID;
         this.assessmentName = assessmentName;
         this.assessmentStart = assessmentStart;
-        this.assessmentEnd = assessmentEnd;
+//        this.assessmentEnd = assessmentEnd;
         this.assessmentType = assessmentType;
     }
 }
